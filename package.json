@@ -2,7 +2,7 @@
   "name": "bobtail-deep-cell",
   "version": "0.1.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/main.js",
   "homepage": "https://github.com/bobtail-dev/bobtail-deep-cell#readme",
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
   },
   "scripts": {
     "build": "npm run clean && npm run babel && npm run minify",
-    "babel": "babel src/main.js > dist/main.js",
+    "babel": "babel src/main.js --out-file dist/main.js --source-maps",
     "clean": "rm -rf dist && mkdir dist",
     "minify": "uglifyjs -mc --source-map --screw-ie8 -o dist/main.min.js dist/main.js",
     "typescript": "",
@@ -37,6 +37,11 @@
     "uglify-es": "^3.0.23"
   },
   "dependencies": {
+    "bobtail-json-cell": "^0.1.0",
+    "bobtail-rx": "^2.1.1",
+    "jquery": "^3.2.1",
+    "jquery-serializejson": "^2.8.1",
+    "mutation-summary": "^0.1.1",
     "underscore": "^1.8.3"
   }
 }
