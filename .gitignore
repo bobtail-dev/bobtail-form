@@ -60,3 +60,4 @@ typings/
 # IntelliJ
 .idea/
 
+.tmp/
