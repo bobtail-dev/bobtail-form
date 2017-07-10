@@ -1,14 +1,14 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define('bobtail-deep-cell', ['exports', 'jquery', 'underscore', 'bobtail-rx', 'bobtail-json-cell', 'mutation-summary', 'jquery-serializejson'], factory);
+    define('bobtail-form', ['exports', 'jquery', 'underscore', 'bobtail-rx', 'bobtail-json-cell', 'mutation-summary', 'jquery-serializejson'], factory);
   } else if (typeof exports !== "undefined") {
     factory(exports, require('jquery'), require('underscore'), require('bobtail-rx'), require('bobtail-json-cell'), require('mutation-summary'), require('jquery-serializejson'));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.jquery, global._, global.rx, global.bobtailJsonCell, global.mutationSummary, global.jquerySerializejson);
-    global.bobtailDeepCell = mod.exports;
+    factory(mod.exports, global.$, global._, global.rx, global.bobtailJsonCell, global.mutationSummary, global.jquerySerializejson);
+    global.bobtailForm = mod.exports;
   }
 })(this, function (exports, _jquery, _underscore, _bobtailRx, _bobtailJsonCell, _mutationSummary) {
   'use strict';
@@ -18,18 +18,16 @@
   });
 
   exports.default = function ($formFn) {
-    var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
-        initial = _ref.initial,
-        serializeOpts = _ref.serializeOpts,
-        lag = _ref.lag;
+    var serializeOpts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var lag = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 100;
 
     var cell = new _bobtailJsonCell.JsonCell({});
-    var $form = $formFn(cell, initial);
+    var $form = $formFn(cell);
 
     var $target = (0, _jquery2.default)($form[0]);
     var s = _underscore2.default.debounce(function () {
-      return (0, _bobtailRx.transaction)(function () {
-        return (0, _bobtailRx.snap)(function () {
+      return rx.transaction(function () {
+        return rx.snap(function () {
           return cell.data = $target.serializeJSON(serializeOpts);
         });
       });
