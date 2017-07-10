@@ -6,8 +6,6 @@ The JSON structure of the form is specified by the name attributes of its contro
 
 ## API
 
-* * *
-
 ### exports($formFn, serializeOpts, lag)
 
 generates a jQuery form and a JsonCell bound to its current serialization, and returns an object containing both.
@@ -24,17 +22,6 @@ options object to pass to jquery.serializeJson
 form will be reserialized at most once every lag milliseconds--see http://underscorejs.org/#debounce
 
 **Returns**: `{{$form: jQuery, cell: JsonCell}}`
-
-* * *
-
-*(c) 2017 Richard Mehlinger*
-
-**Author:** Richard Mehlinger
-
-**License:** MIT
-
-**Overview:** An extension to the [bobtail](github.com/bobtail-dev/bobtail) programming framework, implementing
-          forms with two way data-binding.
 
 ## Example
 
