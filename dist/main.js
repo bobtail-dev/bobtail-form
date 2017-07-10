@@ -23,7 +23,7 @@
         serializeOpts = _ref.serializeOpts,
         lag = _ref.lag;
 
-    var cell = new DeepCell({});
+    var cell = new _bobtailJsonCell.JsonCell({});
     var $form = $formFn(cell, initial);
 
     var $target = (0, _jquery2.default)($form[0]);

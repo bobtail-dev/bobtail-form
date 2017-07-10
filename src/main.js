@@ -6,7 +6,7 @@ import {JsonCell} from 'bobtail-json-cell';
 import MutationSummary from 'mutation-summary';
 
 export default function ($formFn, {initial, serializeOpts, lag}={}) {
-  let cell = new DeepCell({});
+  let cell = new JsonCell({});
   let $form = $formFn(cell, initial);
 
   let $target = $($form[0]);
