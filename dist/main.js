@@ -17,9 +17,8 @@
     value: true
   });
 
-  exports.default = function (_ref) {
-    var $formFn = _ref.$formFn,
-        initial = _ref.initial,
+  exports.default = function ($formFn, _ref) {
+    var initial = _ref.initial,
         serializeOpts = _ref.serializeOpts,
         lag = _ref.lag;
 
