@@ -17,8 +17,9 @@
     value: true
   });
 
-  exports.default = function ($formFn, _ref) {
-    var initial = _ref.initial,
+  exports.default = function ($formFn) {
+    var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+        initial = _ref.initial,
         serializeOpts = _ref.serializeOpts,
         lag = _ref.lag;
 
