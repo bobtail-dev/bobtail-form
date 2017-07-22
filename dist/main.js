@@ -26,10 +26,8 @@
 
     var $target = (0, _jquery2.default)($form[0]);
     var s = _underscore2.default.debounce(function () {
-      return (0, _bobtailRx.transaction)(function () {
-        return (0, _bobtailRx.snap)(function () {
-          return cell.data = $target.serializeJSON(serializeOpts);
-        });
+      return (0, _bobtailRx.snap)(function () {
+        return cell.data = $target.serializeJSON(serializeOpts);
       });
     }, lag);
 
@@ -57,6 +55,24 @@
   }
 
   ;
+
+  /**
+   * generates a jQuery form and a JsonCell bound to its current serialization, and returns an object containing both.
+   * @param {function} $formFn - Function to create the form. Takes a single argument, the JsonCell to which the form is serialized.
+   * @param {object} serializeOpts - options object to pass to jquery.serializeJson
+   * @param {number} lag - form will be reserialized at most once every lag milliseconds--see http://underscorejs.org/#debounce
+   * @returns {{$form: jQuery, cell: JsonCell}}
+   */
+
+  /**
+   * A bobtail extension for building forms with two-way data binding
+   * @author Richard Mehlinger
+   * @copyright (c) 2017 Richard Mehlinger
+   * @license MIT
+   * @module bobtail-form
+   * @overview An extension to the [bobtail](github.com/bobtail-dev/bobtail) programming framework, implementing
+   *           forms with two way data-binding.
+  */
 });
 
 //# sourceMappingURL=main.js.map

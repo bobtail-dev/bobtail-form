@@ -28,7 +28,7 @@ export default function ($formFn, serializeOpts={}, lag=100) {
   let $form = $formFn(cell);
 
   let $target = $($form[0]);
-  let s = _.debounce(() => transaction(() => snap(() => cell.data = $target.serializeJSON(serializeOpts))), lag);
+  let s = _.debounce(() => snap(() => cell.data = $target.serializeJSON(serializeOpts)), lag);
 
   s();
   new MutationSummary({
