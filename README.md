@@ -4,9 +4,12 @@ bobtail-form is a simple implementation of two way data binding for forms, built
 
 The JSON structure of the form is specified by the name attributes of its controls (i.e., input, select and textarea elements), as described [here](https://github.com/marioizquierdo/jquery.serializeJSON). In addition to refreshing whenever an element's value or checked state changes, the form is reserialized if any controls are added, removed, or renamed.
 
-## API
+We use `window.requestAnimationFrame` to schedule UI redraws when the form becomes dirty. This ensures minimal lag, as
+we only need to reserialize the form at most once per redraw.
 
-### exports($formFn, serializeOpts, lag)
+# API
+
+## exports($formFn, serializeOpts, lag)
 
 generates a jQuery form and a JsonCell bound to its current serialization, and returns an object containing both.
 
@@ -18,12 +21,9 @@ Function used to create the form. Takes a single argument, the JsonCell to which
 **serializeOpts**: `object`
 options object to pass to jquery.serializeJson
 
-**lag**: `number`
-form will be reserialized at most once every lag milliseconds--see http://underscorejs.org/#debounce
-
 **Returns**: `{{$form: jQuery, cell: JsonCell}}`
 
-## Example
+# Example
 
 ```
 let rx = require('bobtail');

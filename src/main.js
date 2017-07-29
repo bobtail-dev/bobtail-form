@@ -9,8 +9,7 @@
 */
 
 import $ from 'jquery';
-import _ from 'underscore';
-import {transaction, snap} from 'bobtail-rx';
+import {snap} from 'bobtail-rx';
 import 'jquery-serializejson';
 import {JsonCell} from 'bobtail-json-cell';
 import MutationSummary from 'mutation-summary';
@@ -19,16 +18,25 @@ import MutationSummary from 'mutation-summary';
  * generates a jQuery form and a JsonCell bound to its current serialization, and returns an object containing both.
  * @param {function} $formFn - Function to create the form. Takes a single argument, the JsonCell to which the form is serialized.
  * @param {object} serializeOpts - options object to pass to jquery.serializeJson
- * @param {number} lag - form will be reserialized at most once every lag milliseconds--see http://underscorejs.org/#debounce
  * @returns {{$form: jQuery, cell: JsonCell}}
  */
 
-export default function ($formFn, serializeOpts={}, lag=100) {
+export default function ($formFn, serializeOpts={}) {
   let cell = new JsonCell({});
   let $form = $formFn(cell);
 
   let $target = $($form[0]);
-  let s = _.debounce(() => snap(() => cell.data = $target.serializeJSON(serializeOpts)), lag);
+  let updateQueued = false;
+  let updateFrame = () => {
+    snap(() => cell.data = $target.serializeJSON(serializeOpts));
+    updateQueued = false;
+  };
+  let s = () => {
+    if(!updateQueued){
+      updateQueued = true;
+      window.requestAnimationFrame(updateFrame);
+    }
+  };
 
   s();
   new MutationSummary({
