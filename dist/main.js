@@ -20,14 +20,14 @@
   exports.default = function ($formFn) {
     var serializeOpts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-    var cell = new _bobtailJsonCell.JsonCell({});
+    var cell = new _bobtailJsonCell.ObsJsonCell({})._makeReadOnly();
     var $form = $formFn(cell);
 
     var $target = (0, _jquery2.default)($form[0]);
     var updateQueued = false;
     var updateFrame = function updateFrame() {
       (0, _bobtailRx.snap)(function () {
-        return cell.data = $target.serializeJSON(serializeOpts);
+        return cell._update($target.serializeJSON(serializeOpts));
       });
       updateQueued = false;
     };
@@ -72,11 +72,10 @@
   ;
 
   /**
-   * generates a jQuery form and a JsonCell bound to its current serialization, and returns an object containing both.
-   * @param {function} $formFn - Function to create the form. Takes a single argument, the JsonCell to which the form is serialized.
+   * generates a jQuery form and an ObsJsonCell bound to its current serialization, and returns an object containing both.
+   * @param {function} $formFn - Function to create the form. Takes a single argument, the ObsJsonCell to which the form is serialized.
    * @param {object} serializeOpts - options object to pass to jquery.serializeJson
-   * @param {number} lag - form will be reserialized at most once every lag milliseconds--see http://underscorejs.org/#debounce
-   * @returns {{$form: jQuery, cell: JsonCell}}
+   * @returns {{$form: jQuery, cell: ObsJsonCell}}
    */
 });
 

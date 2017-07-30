@@ -11,24 +11,24 @@
 import $ from 'jquery';
 import {snap} from 'bobtail-rx';
 import 'jquery-serializejson';
-import {JsonCell} from 'bobtail-json-cell';
+import {ObsJsonCell} from 'bobtail-json-cell';
 import MutationSummary from 'mutation-summary';
 
 /**
- * generates a jQuery form and a JsonCell bound to its current serialization, and returns an object containing both.
- * @param {function} $formFn - Function to create the form. Takes a single argument, the JsonCell to which the form is serialized.
+ * generates a jQuery form and an ObsJsonCell bound to its current serialization, and returns an object containing both.
+ * @param {function} $formFn - Function to create the form. Takes a single argument, the ObsJsonCell to which the form is serialized.
  * @param {object} serializeOpts - options object to pass to jquery.serializeJson
- * @returns {{$form: jQuery, cell: JsonCell}}
+ * @returns {{$form: jQuery, cell: ObsJsonCell}}
  */
 
 export default function ($formFn, serializeOpts={}) {
-  let cell = new JsonCell({});
+  let cell = new ObsJsonCell({})._makeReadOnly();
   let $form = $formFn(cell);
 
   let $target = $($form[0]);
   let updateQueued = false;
   let updateFrame = () => {
-    snap(() => cell.data = $target.serializeJSON(serializeOpts));
+    snap(() => cell._update($target.serializeJSON(serializeOpts)));
     updateQueued = false;
   };
   let s = () => {
