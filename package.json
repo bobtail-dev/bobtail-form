@@ -1,6 +1,6 @@
 {
   "name": "bobtail-form",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "",
   "main": "dist/main.js",
   "homepage": "https://github.com/bobtail-dev/bobtail-form#readme",
@@ -46,7 +46,7 @@
     "watchify": "^3.9.0"
   },
   "dependencies": {
-    "bobtail-json-cell": "^0.2.4",
+    "bobtail-json-cell": "^0.3.0",
     "bobtail-rx": ">=2.1.1",
     "jquery": "^3.2.1",
     "jquery-serializejson": "^2.8.1",
