@@ -1,6 +1,6 @@
 {
   "name": "bobtail-form",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "",
   "main": "dist/main.js",
   "homepage": "https://github.com/bobtail-dev/bobtail-form#readme",
@@ -32,10 +32,13 @@
     "babel-cli": "^6.24.1",
     "babel-plugin-transform-es2015-modules-umd": "^6.24.1",
     "babel-preset-es2015": "^6.24.1",
+    "bobtail-json-cell": "^0.3.1",
+    "bobtail-rx": ">=2.1.1",
     "browserify": "^14.4.0",
     "jasmine": "^2.6.0",
     "jasmine-core": "^2.5.2",
     "jasmine-jquery": "^2.1.1",
+    "jquery": "^3.0.0",
     "karma": "^1.4.1",
     "karma-browserify": "^5.1.1",
     "karma-chrome-launcher": "^2.0.0",
@@ -46,10 +49,12 @@
     "watchify": "^3.9.0"
   },
   "dependencies": {
-    "bobtail-json-cell": "^0.3.0",
-    "bobtail-rx": ">=2.1.1",
-    "jquery": "^3.2.1",
     "jquery-serializejson": "^2.8.1",
     "mutation-summary": "^0.1.1"
+  },
+  "peerDependencies": {
+    "bobtail-json-cell": "^0.3.1",
+    "bobtail-rx": ">=2.1.1",
+    "jquery": "^3.0.0"
   }
 }
